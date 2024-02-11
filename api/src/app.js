@@ -7,9 +7,9 @@ import routes from './routes/index'
 import Role from './models/roleSchema'
 
 import authRoutes from './routes/authRoutes'
-import getCurrentUser from './routes/getCurrentUserRoutes'
-import getUserInfo from './routes/getUserInfoRoutes'
-import setUserInfo from './routes/setUserInfoRoutes'
+import { getCurrentUser } from './routes/getCurrentUserRoutes'
+import { getUserInfo } from './routes/getUserInfoRoutes'
+import { setUserInfo } from './routes/setUserInfoRoutes'
 import userRoutes from './routes/userRoutes'
 import verifyEmailRoutes from './routes/verifyEmailRoutes'
 

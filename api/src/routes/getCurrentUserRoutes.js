@@ -1,26 +1,17 @@
-import express from 'express'
-
 import jwt from 'jsonwebtoken'
 import config from '../auth.config'
 import { User } from '../models/userSchema'
 
-const router = express.Router()
-
-router.get('/', (req, res) => {
-  // console.log(req.headers.authorization)
+export const getCurrentUser = (req, res) => {
   const usertoken = req.headers.authorization
   const token = usertoken.split(' ')
-  //   console.log(token);
   const decoded = jwt.verify(token[1], config.secret)
   var userId = decoded.id
   User.find({ _id: userId }, (err, result) => {
     if (err) {
-      // console.log('Here!')
       console.error(err)
       return
     } else {
-      // console.log("here!!!")
-      // console.log(result)
       if (result.length > 0) {
         const info = new Object()
         info.username = result[0].username
@@ -31,6 +22,4 @@ router.get('/', (req, res) => {
       }
     }
   })
-})
-
-module.exports = router
+}

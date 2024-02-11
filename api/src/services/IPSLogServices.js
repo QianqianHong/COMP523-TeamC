@@ -1,7 +1,7 @@
 import IPSLogModel from '../models/IPSLogSchema'
 
 /* Runs mongoose function to get all records from the database */
-async function getAllRecordsFromDB() {
+export async function getAllRecordsFromDB() {
   var records = await IPSLogModel.find(function (err, docs) {
     if (err) {
       throw err
@@ -18,7 +18,7 @@ async function getAllRecordsFromDB() {
 }
 
 /* Runs mongoose function to find a specific record */
-async function getRecordFromDB(id) {
+export async function getRecordFromDB(id) {
   var record = await IPSLogModel.findOne(
     { staff_name: id },
     function (err, doc) {
@@ -38,7 +38,7 @@ async function getRecordFromDB(id) {
 }
 
 /* Runs mongoose function to add an entire record to the database */
-async function addRecordToDB(body) {
+export async function addRecordToDB(body) {
   var record = new IPSLogModel(body)
   var status = await IPSLogModel.findOne(body, function (err, doc) {
     if (err) {
@@ -62,7 +62,7 @@ async function addRecordToDB(body) {
 }
 
 /* Runs mongoose function that finds a record by an ID and updates it with whatever input */
-async function updateRecordInDB(id, body) {
+export async function updateRecordInDB(id, body) {
   var status = await IPSLogModel.findOneAndUpdate(
     { staff_name: id },
     body,
@@ -102,7 +102,7 @@ async function deleteRecordFromDB(id) {
 }
 
 /* Runs mongoose function to delete all records in the database */
-async function deleteAllRecordsFromDB() {
+export async function deleteAllRecordsFromDB() {
   var records = await IPSLogModel.deleteMany({}, function (err, docs) {
     if (err) {
       throw err
@@ -116,13 +116,4 @@ async function deleteAllRecordsFromDB() {
   }).clone()
 
   return records
-}
-
-module.exports = {
-  getAllRecordsFromDB,
-  getRecordFromDB,
-  addRecordToDB,
-  updateRecordInDB,
-  deleteRecordFromDB,
-  deleteAllRecordsFromDB,
 }

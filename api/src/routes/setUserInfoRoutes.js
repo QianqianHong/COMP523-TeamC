@@ -1,8 +1,6 @@
-import express from 'express'
 import User from '../models/userSchema'
 
-const router = express.Router()
-router.post('/', async (req, res) => {
+export const setUserInfo = async (req, res) => {
   const email = req.body.email
   const user = User.findOne({ user_email: email })
   if (user) {
@@ -18,6 +16,4 @@ router.post('/', async (req, res) => {
   } else {
     res.json('User not found')
   }
-})
-
-module.exports = router
+}
