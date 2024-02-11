@@ -12,6 +12,9 @@ import * as staffingController from '../controllers/staffingController'
 import { adminBoard, allAccess, userBoard } from '../controllers/userController'
 
 import * as authJwt from '../middlewares/authJwt'
+import { getCurrentUser } from './getCurrentUserRoutes'
+import { getUserInfo } from './getUserInfoRoutes'
+import { setUserInfo } from './setUserInfoRoutes'
 import { getUniqueString, verifyMiddleware } from './verifyEmailRoutes'
 
 const router = express.Router()
@@ -97,5 +100,10 @@ router.get(
 // verify email routes
 router.use('/verify', verifyMiddleware)
 router.get('/verify/:uniqueString', getUniqueString)
+
+// misc
+router.use('/userInfo', getUserInfo)
+router.use('/user-setting', setUserInfo)
+router.use('/current-user', getCurrentUser)
 
 module.exports = router

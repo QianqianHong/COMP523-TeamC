@@ -6,10 +6,6 @@ import routes from './routes/index'
 
 import { Role } from './models/roleSchema'
 
-import { getCurrentUser } from './routes/getCurrentUserRoutes'
-import { getUserInfo } from './routes/getUserInfoRoutes'
-import { setUserInfo } from './routes/setUserInfoRoutes'
-
 /* Creating an express app on port 8080 */
 const app = express()
 const port = 3000
@@ -68,16 +64,7 @@ function initial() {
 
 initial()
 
-/* Connecting to routers */
-
 app.use('/', routes)
-app.use('/userInfo', getUserInfo)
-app.use('/user-setting', setUserInfo)
-app.use('/current-user', getCurrentUser)
-
-/* Show the app started */
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
-
-module.exports = app
