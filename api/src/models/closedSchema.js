@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 // Create a schema
 const closedSchema = new mongoose.Schema({
@@ -8,10 +8,10 @@ const closedSchema = new mongoose.Schema({
   employment_status: String,
   engagement_activities: [String],
   closure_reason: [String],
-});
+})
 
 // Create a model
-const closedModel = mongoose.model("closed_cases", closedSchema);
+const closedModel = mongoose.model('closed_cases', closedSchema)
 
 // Export the model
-module.exports = closedModel;
+module.exports = closedModel

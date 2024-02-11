@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 // Create a schema
 const staffingSchema = new mongoose.Schema({
@@ -13,10 +13,10 @@ const staffingSchema = new mongoose.Schema({
   end_date: String,
   hours_worked: Number,
   IPS_training: [String],
-});
+})
 
 // Create a model
-const staffingModel = mongoose.model("staffing_level", staffingSchema);
+const staffingModel = mongoose.model('staffing_level', staffingSchema)
 
 // Export the model
-module.exports = staffingModel;
+module.exports = staffingModel

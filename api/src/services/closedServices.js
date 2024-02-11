@@ -1,121 +1,133 @@
-const closedModel = require('../models/closedSchema');
+const closedModel = require('../models/closedSchema')
 
 /* Runs mongoose function to get all records from the database */
 async function getAllRecordsFromDB() {
-    var records = await closedModel.find(function (err, docs) {
-        if (err) {
-            throw err;
+  var records = await closedModel
+    .find(function (err, docs) {
+      if (err) {
+        throw err
+      } else {
+        if (docs) {
+          console.log('Found all records.')
         } else {
-            if (docs) {
-                console.log('Found all records.');
-            } else {
-                console.log('No records found.')
-            }
+          console.log('No records found.')
         }
-    }).clone();
+      }
+    })
+    .clone()
 
-    return records;
+  return records
 }
 
 /* Runs mongoose function to find a specific record */
 async function getRecordFromDB(id) {
-    var record = await closedModel.findOne({ uid: id }, function (err, doc) {
-        if (err) {
-            throw err;
+  var record = await closedModel
+    .findOne({ uid: id }, function (err, doc) {
+      if (err) {
+        throw err
+      } else {
+        if (doc) {
+          console.log('Found ' + doc)
         } else {
-            if (doc) {
-                console.log('Found ' + doc);
-            } else {
-                console.log('Could not find record with uid: ' + id);
-            }
+          console.log('Could not find record with uid: ' + id)
         }
-    }).clone();
+      }
+    })
+    .clone()
 
-    return record;
+  return record
 }
 
 /* Runs mongoose function to add an entire record to the database */
 async function addRecordToDB(body) {
-    var record = new closedModel(body);
-    var status = await closedModel.findOne(body, function (err, doc) {
-        if (err) {
-            throw err;
+  var record = new closedModel(body)
+  var status = await closedModel
+    .findOne(body, function (err, doc) {
+      if (err) {
+        throw err
+      } else {
+        if (doc) {
+          console.log('Record already exists.')
         } else {
-            if (doc) {
-                console.log('Record already exists.');
+          record.save(function (err, doc) {
+            if (err) {
+              throw err
             } else {
-                record.save(function (err, doc) {
-                    if (err) {
-                        throw err;
-                    } else {
-                        console.log('Added ' + doc);
-                    }
-                });
+              console.log('Added ' + doc)
             }
+          })
         }
-    }).clone();
+      }
+    })
+    .clone()
 
-    return status;
+  return status
 }
 
 /* Runs mongoose function that finds a record by an ID and updates it with whatever input */
 async function updateRecordInDB(id, body) {
-    var status = await closedModel.findOneAndUpdate({ uid: id }, body, function (err, doc) {
-        if (err) {
-            throw err;
+  var status = await closedModel
+    .findOneAndUpdate({ uid: id }, body, function (err, doc) {
+      if (err) {
+        throw err
+      } else {
+        if (doc) {
+          console.log('Sucessfully updated the record to: ' + doc)
         } else {
-            if (doc) {
-                console.log('Sucessfully updated the record to: ' + doc);
-            } else {
-                console.log('No record found to update.');
-            }
+          console.log('No record found to update.')
         }
-    }).clone();
+      }
+    })
+    .clone()
 
-    return status;
+  return status
 }
 
 /* Runs mongoose function to find a record by an ID and delete it */
 async function deleteRecordFromDB(id) {
-    var status = await closedModel.findOne({ uid: id });
+  var status = await closedModel.findOne({ uid: id })
 
-    await closedModel.findOneAndDelete({ uid: id }, function (err, doc) {
-        if (err) {
-            throw err;
+  await closedModel
+    .findOneAndDelete({ uid: id }, function (err, doc) {
+      if (err) {
+        throw err
+      } else {
+        if (doc) {
+          console.log('Sucessfully deleted record :' + doc)
         } else {
-            if (doc) {
-                console.log('Sucessfully deleted record :' + doc);
-            } else {
-                console.log('No record found to delete.');
-            }
+          console.log('No record found to delete.')
         }
-    }).clone();
+      }
+    })
+    .clone()
 
-    return status;
+  return status
 }
 
 /* Runs mongoose function to delete all records in the database */
 async function deleteAllRecordsFromDB() {
-    var records = await closedModel.deleteMany({}, function (err, docs) {
-        if (err) {
-            throw err;
+  var records = await closedModel
+    .deleteMany({}, function (err, docs) {
+      if (err) {
+        throw err
+      } else {
+        if (docs) {
+          console.log('Deleted all records.')
         } else {
-            if (docs) {
-                console.log('Deleted all records.');
-            } else {
-                console.log('No records found.')
-            }
+          console.log('No records found.')
         }
-    }).clone();
+      }
+    })
+    .clone()
 
-    return records;
+  return records
 }
 
 module.exports = {
-    getAllRecordsFromDB,
-    getRecordFromDB,
-    addRecordToDB,
-    updateRecordInDB,
-    deleteRecordFromDB,
-    deleteAllRecordsFromDB
-};
+  getAllRecordsFromDB,
+  getRecordFromDB,
+  addRecordToDB,
+  updateRecordInDB,
+  deleteRecordFromDB,
+  deleteAllRecordsFromDB,
+}

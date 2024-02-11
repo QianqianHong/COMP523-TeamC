@@ -1,3 +1,3 @@
 module.exports = {
-  secret: "ips-fidelity",
-};
+  secret: 'ips-fidelity',
+}

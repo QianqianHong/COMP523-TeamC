@@ -2,7 +2,8 @@
   "scripts": {
     "test": "jest",
     "build": "tsc -p tsconfig.json",
-    "start": "node bin/app.js"
+    "start": "node bin/app.js",
+    "prettier": "prettier --config .prettierrc --write 'src/**/*.{ts,js}'"
   },
   "dependencies": {
     "angular": "^1.8.3",
@@ -26,6 +27,8 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "jest": "^29.3.1",
+    "prettier": "^3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
