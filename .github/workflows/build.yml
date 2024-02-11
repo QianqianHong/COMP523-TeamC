@@ -21,7 +21,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - run: npm install
+        working-directory: api
       # - run: npm test
       - run: npm run build
+        working-directory: api
         env:
           CI: true
