@@ -1,9 +1,10 @@
 import csvtojson from 'csvtojson'
-import personLevelModel from '../models/personLevelSchema'
+import { Document, Error } from 'mongoose'
+import { personLevelModel } from '../models/personLevelSchema'
 
 /* Runs mongoose function to get all records from the database */
-async function getAllRecordsFromDB() {
-  uploadCSVtoDB()
+export async function getAllRecordsFromDB() {
+  // uploadCSVtoDB()
   var records = await personLevelModel
     .find(function (err, docs) {
       if (err) {
@@ -22,9 +23,9 @@ async function getAllRecordsFromDB() {
 }
 
 /* Runs mongoose function to find a specific record */
-async function getRecordFromDB(id) {
+export async function getRecordFromDB(id: string) {
   var record = await personLevelModel
-    .findOne({ uid: id }, function (err, doc) {
+    .findOne({ uid: id }, (err: Error, doc: Document) => {
       if (err) {
         throw err
       } else {
@@ -41,10 +42,10 @@ async function getRecordFromDB(id) {
 }
 
 /* Runs mongoose function to add an entire record to the database */
-async function addRecordToDB(body) {
+export async function addRecordToDB(body: object) {
   var record = new personLevelModel(body)
   var status = await personLevelModel
-    .findOne(body, function (err, doc) {
+    .findOne(body, (err: Error, doc: Document) => {
       if (err) {
         throw err
       } else {
@@ -67,14 +68,14 @@ async function addRecordToDB(body) {
 }
 
 /* Runs mongoose function that finds a record by an ID and updates it with whatever input */
-async function updateRecordInDB(id, body) {
+export async function updateRecordInDB(id: string, body: object) {
   var status = await personLevelModel
-    .findOneAndUpdate({ uid: id }, body, function (err, doc) {
+    .findOneAndUpdate({ uid: id }, body, (err: Error, doc: Document) => {
       if (err) {
         throw err
       } else {
         if (doc) {
-          console.log('Sucessfully updated the record to: ' + doc)
+          console.log('Successfully updated the record to: ' + doc)
         } else {
           console.log('No record found to update.')
         }
@@ -86,16 +87,16 @@ async function updateRecordInDB(id, body) {
 }
 
 /* Runs mongoose function to find a record by an ID and delete it */
-async function deleteRecordFromDB(id) {
+export async function deleteRecordFromDB(id: string) {
   var status = await personLevelModel.findOne({ uid: id })
 
   await personLevelModel
-    .findOneAndDelete({ uid: id }, function (err, doc) {
+    .findOneAndDelete({ uid: id }, (err: Error, doc: Document) => {
       if (err) {
         throw err
       } else {
         if (doc) {
-          console.log('Sucessfully deleted record :' + doc)
+          console.log('Successfully deleted record :' + doc)
         } else {
           console.log('No record found to delete.')
         }
@@ -107,13 +108,13 @@ async function deleteRecordFromDB(id) {
 }
 
 /* Runs mongoose function to delete all records in the database */
-async function deleteAllRecordsFromDB() {
+export async function deleteAllRecordsFromDB() {
   var records = await personLevelModel
-    .deleteMany({}, function (err, docs) {
+    .deleteMany({}, (err: Error, doc: Document) => {
       if (err) {
         throw err
       } else {
-        if (docs) {
+        if (doc) {
           console.log('Deleted all records.')
         } else {
           console.log('No records found.')
@@ -126,22 +127,12 @@ async function deleteAllRecordsFromDB() {
 }
 
 /* Utilizes Add Record to DB Method to upload CSV File */
-async function uploadCSVtoDB(csvFileName) {
+export async function uploadCSVtoDB(csvFileName: string) {
   csvtojson()
     .fromFile('mockDataPersonColumns.csv')
     .then((csvData) => {
-      for (i = 0; i < csvData.length; i++) {
+      for (let i: number = 0; i < csvData.length; i++) {
         addRecordToDB(csvData[i])
       }
     })
-}
-
-module.exports = {
-  getAllRecordsFromDB,
-  getRecordFromDB,
-  addRecordToDB,
-  updateRecordInDB,
-  deleteRecordFromDB,
-  deleteAllRecordsFromDB,
-  uploadCSVtoDB,
 }

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const User = mongoose.model(
+export const User = mongoose.model(
   'User',
   new mongoose.Schema({
     uid: String,
@@ -19,5 +19,3 @@ const User = mongoose.model(
     ],
   }),
 )
-
-module.exports = User

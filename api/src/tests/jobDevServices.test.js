@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
-import JobDevModel from '../models/JobDevSchema'
-import JobDevServices from '../services/JobDevServices'
+import { jobDevModel } from '../models/jobDevSchema'
+import * as jobDevServices from './services/JobDevServices'
 
 dotenv.config()
 const { DATABASE_URI } = process.env
@@ -25,7 +25,7 @@ test('clear database', async () => {
     console.log(e.message)
   }
   console.log('clearing database')
-  await JobDevModel.deleteMany()
+  await jobDevModel.deleteMany()
   mongoose.disconnect()
 })
 
@@ -48,7 +48,7 @@ test('add record', async () => {
     nature_of_visit: 'NATURE OF VISIT STRING',
     visit_desc: 'VISIT DESC STRING',
   })
-  await JobDevServices.addRecordToDB(JobDevTest).then((status) => {
+  await jobDevServices.addRecordToDB(JobDevTest).then((status) => {
     expect(status).not.toBeNull()
   })
   mongoose.disconnect()
@@ -72,7 +72,7 @@ test('add unformatted record', async () => {
     nature_of_visit: 'NATURE OF VISIT STRING',
     visit_desc: 'VISIT DESC STRING',
   })
-  await JobDevServices.addRecordToDB(JobDevTest).then((status) => {
+  await jobDevServices.addRecordToDB(JobDevTest).then((status) => {
     expect(status).not.toBeNull()
   })
   mongoose.disconnect()
@@ -97,7 +97,7 @@ test('update record', async () => {
     nature_of_visit: 'NATURE OF VISIT STRING',
     visit_desc: 'VISIT DESC STRING',
   })
-  await JobDevServices.updateRecordInDB(2, JobDevTest).then((status) => {
+  await jobDevServices.updateRecordInDB(2, JobDevTest).then((status) => {
     expect(status).not.toBeNull()
   })
   mongoose.disconnect()
@@ -122,7 +122,7 @@ test('add multiple records', async () => {
     nature_of_visit: 'NATURE OF VISIT STRING',
     visit_desc: 'VISIT DESC STRING',
   })
-  await JobDevServices.addRecordToDB(JobDevTest1)
+  await jobDevServices.addRecordToDB(JobDevTest1)
   const JobDevTest2 = new Object({
     date_participated: ['DATE 1', 'DATE 2'],
     uid: 4,
@@ -134,7 +134,7 @@ test('add multiple records', async () => {
     nature_of_visit: 'NATURE OF VISIT STRING',
     visit_desc: 'VISIT DESC STRING',
   })
-  await JobDevServices.addRecordToDB(JobDevTest2)
+  await jobDevServices.addRecordToDB(JobDevTest2)
   const JobDevTest3 = new Object({
     date_participated: ['DATE 1', 'DATE 2'],
     uid: 5,
@@ -146,7 +146,7 @@ test('add multiple records', async () => {
     nature_of_visit: 'NATURE OF VISIT STRING',
     visit_desc: 'VISIT DESC STRING',
   })
-  await JobDevServices.addRecordToDB(JobDevTest3)
+  await jobDevServices.addRecordToDB(JobDevTest3)
   const JobDevTest4 = new Object({
     date_participated: ['DATE 1', 'DATE 2'],
     uid: 6,
@@ -158,7 +158,7 @@ test('add multiple records', async () => {
     nature_of_visit: 'NATURE OF VISIT STRING',
     visit_desc: 'VISIT DESC STRING',
   })
-  await JobDevServices.addRecordToDB(JobDevTest4)
+  await jobDevServices.addRecordToDB(JobDevTest4)
   const JobDevTest5 = new Object({
     date_participated: ['DATE 1', 'DATE 2'],
     uid: 7,
@@ -170,7 +170,7 @@ test('add multiple records', async () => {
     nature_of_visit: 'NATURE OF VISIT STRING',
     visit_desc: 'VISIT DESC STRING',
   })
-  await JobDevServices.addRecordToDB(JobDevTest5)
+  await jobDevServices.addRecordToDB(JobDevTest5)
   mongoose.disconnect()
 })
 
@@ -182,7 +182,7 @@ test('retrieve all records', async () => {
     console.log(e.message)
   }
   console.log('view all records')
-  await JobDevServices.getAllRecordsFromDB().then((status) => {
+  await jobDevServices.getAllRecordsFromDB().then((status) => {
     expect(status).not.toBeNull()
   })
   mongoose.disconnect()
@@ -196,7 +196,7 @@ test('retrieve 1 record', async () => {
     console.log(e.message)
   }
   console.log('view record 6')
-  await JobDevServices.getRecordFromDB(6).then((status) => {
+  await jobDevServices.getRecordFromDB(6).then((status) => {
     expect(status).not.toBeNull()
   })
   mongoose.disconnect()
@@ -210,7 +210,7 @@ test('retrieve non-existant record', async () => {
     console.log(e.message)
   }
   console.log('view non-existant record')
-  await JobDevServices.getRecordFromDB(8).then((status) => {
+  await jobDevServices.getRecordFromDB(8).then((status) => {
     expect(status).toBeNull()
   })
   mongoose.disconnect()
@@ -224,7 +224,7 @@ test('delete a record', async () => {
     console.log(e.message)
   }
   console.log('delete record 7')
-  await JobDevServices.deleteRecordFromDB(7).then((status) => {
+  await jobDevServices.deleteRecordFromDB(7).then((status) => {
     expect(status).not.toBeNull()
   })
   mongoose.disconnect()

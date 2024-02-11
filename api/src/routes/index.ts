@@ -1,12 +1,12 @@
 import express from 'express'
 
 /* Controllers */
-import IPSLogController from '../controllers/IPSLogController'
-import allLogsController from '../controllers/allRecordsController'
-import closedController from '../controllers/closedController'
-import jobDevController from '../controllers/jobDevController'
-import personLevelController from '../controllers/personLevelController'
-import staffingController from '../controllers/staffingController'
+import * as IPSLogController from '../controllers/IPSLogController'
+import * as allLogsController from '../controllers/allRecordsController'
+import * as closedController from '../controllers/closedController'
+import * as jobDevController from '../controllers/jobDevController'
+import * as personLevelController from '../controllers/personLevelController'
+import * as staffingController from '../controllers/staffingController'
 
 const router = express.Router()
 

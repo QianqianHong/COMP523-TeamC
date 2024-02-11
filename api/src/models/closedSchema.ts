@@ -11,7 +11,4 @@ const closedSchema = new mongoose.Schema({
 })
 
 // Create a model
-const closedModel = mongoose.model('closed_cases', closedSchema)
-
-// Export the model
-module.exports = closedModel
+export const closedModel = mongoose.model('closed_cases', closedSchema)

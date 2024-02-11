@@ -4,7 +4,7 @@ import express from 'express'
 import db from './database'
 import routes from './routes/index'
 
-import Role from './models/roleSchema'
+import { Role } from './models/roleSchema'
 
 import authRoutes from './routes/authRoutes'
 import { getCurrentUser } from './routes/getCurrentUserRoutes'

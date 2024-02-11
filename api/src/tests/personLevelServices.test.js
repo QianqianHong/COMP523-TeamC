@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import personLevelModel from '../models/personLevelSchema'
-import personLevelServices from '../services/personLevelServices'
+import * as personLevelServices from '../services/personLevelServices'
 
 dotenv.config()
 const { DATABASE_URI } = process.env

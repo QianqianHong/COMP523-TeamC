@@ -14,7 +14,4 @@ const jobDevSchema = new mongoose.Schema({
 })
 
 // Create a model
-const jobDevModel = mongoose.model('job_dev_log', jobDevSchema)
-
-// Export the model
-module.exports = jobDevModel
+export const jobDevModel = mongoose.model('job_dev_log', jobDevSchema)

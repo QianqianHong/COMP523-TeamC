@@ -1,8 +1,9 @@
-import staffingModel from '../models/staffingSchema'
+import { Document, Error } from 'mongoose'
+import { jobDevModel } from '../models/jobDevSchema'
 
 /* Runs mongoose function to get all records from the database */
-async function getAllRecordsFromDB() {
-  var records = await staffingModel
+export async function getAllRecordsFromDB() {
+  var records = await jobDevModel
     .find(function (err, docs) {
       if (err) {
         throw err
@@ -20,9 +21,9 @@ async function getAllRecordsFromDB() {
 }
 
 /* Runs mongoose function to find a specific record */
-async function getRecordFromDB(id) {
-  var record = await staffingModel
-    .findOne({ staff_name: id }, function (err, doc) {
+export async function getRecordFromDB(id: string) {
+  var record = await jobDevModel
+    .findOne({ uid: id }, (err: Error, doc: Document) => {
       if (err) {
         throw err
       } else {
@@ -39,10 +40,10 @@ async function getRecordFromDB(id) {
 }
 
 /* Runs mongoose function to add an entire record to the database */
-async function addRecordToDB(body) {
-  var record = new staffingModel(body)
-  var status = await staffingModel
-    .findOne(body, function (err, doc) {
+export async function addRecordToDB(body: object) {
+  var record = new jobDevModel(body)
+  var status = await jobDevModel
+    .findOne(body, (err: Error, doc: Document) => {
       if (err) {
         throw err
       } else {
@@ -65,14 +66,14 @@ async function addRecordToDB(body) {
 }
 
 /* Runs mongoose function that finds a record by an ID and updates it with whatever input */
-async function updateRecordInDB(id, body) {
-  var status = await staffingModel
-    .findOneAndUpdate({ staff_name: id }, body, function (err, doc) {
+export async function updateRecordInDB(id: string, body: object) {
+  var status = await jobDevModel
+    .findOneAndUpdate({ uid: id }, body, (err: Error, doc: Document) => {
       if (err) {
         throw err
       } else {
         if (doc) {
-          console.log('Sucessfully updated the record to: ' + doc)
+          console.log('Successfully updated the record to: ' + doc)
         } else {
           console.log('No record found to update.')
         }
@@ -84,16 +85,16 @@ async function updateRecordInDB(id, body) {
 }
 
 /* Runs mongoose function to find a record by an ID and delete it */
-async function deleteRecordFromDB(id) {
-  var status = await staffingModel.findOne({ staff_name: id })
+export async function deleteRecordFromDB(id: string) {
+  var status = await jobDevModel.findOne({ uid: id })
 
-  await staffingModel
-    .findOneAndDelete({ staff_name: id }, function (err, doc) {
+  await jobDevModel
+    .findOneAndDelete({ uid: id }, (err: Error, doc: Document) => {
       if (err) {
         throw err
       } else {
         if (doc) {
-          console.log('Sucessfully deleted record :' + doc)
+          console.log('Successfully deleted record :' + doc)
         } else {
           console.log('No record found to delete.')
         }
@@ -105,13 +106,13 @@ async function deleteRecordFromDB(id) {
 }
 
 /* Runs mongoose function to delete all records in the database */
-async function deleteAllRecordsFromDB() {
-  var records = await staffingModel
-    .deleteMany({}, function (err, docs) {
+export async function deleteAllRecordsFromDB() {
+  var records = await jobDevModel
+    .deleteMany({}, (err: Error, doc: Document) => {
       if (err) {
         throw err
       } else {
-        if (docs) {
+        if (doc) {
           console.log('Deleted all records.')
         } else {
           console.log('No records found.')
@@ -121,13 +122,4 @@ async function deleteAllRecordsFromDB() {
     .clone()
 
   return records
-}
-
-module.exports = {
-  getAllRecordsFromDB,
-  getRecordFromDB,
-  addRecordToDB,
-  updateRecordInDB,
-  deleteRecordFromDB,
-  deleteAllRecordsFromDB,
 }

@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 
-// Create a schema
 const staffingSchema = new mongoose.Schema({
   agency_name: String,
   eval_dates: [String],
@@ -15,8 +14,4 @@ const staffingSchema = new mongoose.Schema({
   IPS_training: [String],
 })
 
-// Create a model
-const staffingModel = mongoose.model('staffing_level', staffingSchema)
-
-// Export the model
-module.exports = staffingModel
+export const staffingModel = mongoose.model('staffing_level', staffingSchema)

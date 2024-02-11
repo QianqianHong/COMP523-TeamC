@@ -5,7 +5,7 @@ import personLevelServices from '../services/personLevelServices'
 import staffingServices from '../services/staffingServices'
 
 // New controller function to aggregate all records
-async function getAllRecordsFromAllServices(req, res) {
+export async function getAllRecordsFromAllServices(req, res) {
   try {
     // Retrieve all records from each service
     const ipsLogRecords = await IPSLogServices.getAllRecordsFromDB()
@@ -29,8 +29,4 @@ async function getAllRecordsFromAllServices(req, res) {
       .status(500)
       .json({ success: false, msg: 'Failed to retrieve all records.' })
   }
-}
-
-module.exports = {
-  getAllRecordsFromAllServices,
 }

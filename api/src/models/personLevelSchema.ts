@@ -27,8 +27,7 @@ const personLevelSchema = new mongoose.Schema({
   hours: Number,
 })
 
-// Create a model
-const personLevelModel = mongoose.model('person_level', personLevelSchema)
-
-// Export the model
-module.exports = personLevelModel
+export const personLevelModel = mongoose.model(
+  'person_level',
+  personLevelSchema,
+)

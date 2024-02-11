@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
-import closedModel from '../models/closedSchema'
-import closedServices from '../services/closedServices'
+import { closedModel } from '../models/closedSchema'
+import * as closedServices from '../services/closedServices'
 
 dotenv.config()
 const { DATABASE_URI } = process.env

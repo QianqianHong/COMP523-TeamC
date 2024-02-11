@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken'
 import config from '../auth.config'
-import Role from '../models/roleSchema'
-import User from '../models/userSchema'
+import { Role } from '../models/roleSchema'
+import { User } from '../models/userSchema'
 
-const verifyToken = (req, res, next) => {
+export const verifyToken = (req, res, next) => {
   let token = req.headers['x-access-token']
 
   if (!token) {
@@ -19,7 +19,7 @@ const verifyToken = (req, res, next) => {
   })
 }
 
-const isAdmin = (req, res, next) => {
+export const isAdmin = (req, res, next) => {
   User.findById(req.userId).exec((err, user) => {
     if (err) {
       res.status(500).send({ message: err })
@@ -49,9 +49,3 @@ const isAdmin = (req, res, next) => {
     )
   })
 }
-
-const authJwt = {
-  verifyToken,
-  isAdmin,
-}
-module.exports = authJwt

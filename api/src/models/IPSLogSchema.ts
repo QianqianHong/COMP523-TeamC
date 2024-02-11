@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 
-// Create a schema
-const IPSSchema = mongoose.Schema({
+const IPSSchema = new mongoose.Schema({
   staff_name: String,
   time_period: String,
   work_week: String,
@@ -11,8 +10,4 @@ const IPSSchema = mongoose.Schema({
   train_PTO_hours_spent: Number,
 })
 
-// Create a model
-const IPSModel = mongoose.model('ips_activity_log', IPSSchema)
-
-// Export the model
-module.exports = IPSModel
+export const IPSLogModel = mongoose.model('ips_activity_log', IPSSchema)

@@ -1,21 +1,10 @@
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
-import IPSLogModel from '../models/IPSLogSchema'
-import IPSLogServices from '../services/IPSLogServices'
+import { IPSLogModel } from '../models/IPSLogSchema'
+import * as IPSLogServices from '../services/IPSLogServices'
 
 dotenv.config()
 const { DATABASE_URI } = process.env
-
-/*test('test template', async () => {0
-    try {
-        await mongoose.connect(DATABASE_URI);
-        console.log("Successfully connected to the server");
-    } catch (e) {
-        console.log(e.message);
-    }
-
-    mongoose.disconnect();
-});*/
 
 test('clear database', async () => {
   try {
@@ -37,7 +26,7 @@ test('add record', async () => {
     console.log(e.message)
   }
   console.log('add record test')
-  const IPSLogtest = new Object({
+  const IPSLogTest = new Object({
     staff_name: 'name 1',
     time_period: 'TIME PERIOD STRING',
     work_week: 'WORK WEEK STRING',
@@ -46,7 +35,7 @@ test('add record', async () => {
     community_hours_spent: 10,
     train_PTO_hours_spent: 10,
   })
-  await IPSLogServices.addRecordToDB(IPSLogtest).then((status) => {
+  await IPSLogServices.addRecordToDB(IPSLogTest).then((status) => {
     expect(status).not.toBeNull()
   })
   mongoose.disconnect()
@@ -60,7 +49,7 @@ test('add unformatted record', async () => {
     console.log(e.message)
   }
   console.log('add unformatted record test')
-  const IPSLogtest = new Object({
+  const IPSLogTest = new Object({
     staff_name: 'name 2',
     work_week: 'WORK WEEK STRING with time period missing',
     hours_worked: 20,
@@ -68,7 +57,7 @@ test('add unformatted record', async () => {
     community_hours_spent: 10,
     train_PTO_hours_spent: 10,
   })
-  await IPSLogServices.addRecordToDB(IPSLogtest).then((status) => {
+  await IPSLogServices.addRecordToDB(IPSLogTest).then((status) => {
     expect(status).not.toBeNull()
   })
   mongoose.disconnect()
@@ -105,7 +94,7 @@ test('add multiple records', async () => {
     console.log(e.message)
   }
   console.log('add multiple records test')
-  const IPSLogtest1 = new Object({
+  const IPSLogTest1 = new Object({
     staff_name: 'name 3',
     time_period: 'TIME PERIOD STRING',
     work_week: 'WORK WEEK STRING',
@@ -114,8 +103,8 @@ test('add multiple records', async () => {
     community_hours_spent: 10,
     train_PTO_hours_spent: 10,
   })
-  await IPSLogServices.addRecordToDB(IPSLogtest1)
-  const IPSLogtest2 = new Object({
+  await IPSLogServices.addRecordToDB(IPSLogTest1)
+  const IPSLogTest2 = new Object({
     staff_name: 'name 4',
     time_period: 'TIME PERIOD STRING',
     work_week: 'WORK WEEK STRING',
@@ -124,8 +113,8 @@ test('add multiple records', async () => {
     community_hours_spent: 10,
     train_PTO_hours_spent: 10,
   })
-  await IPSLogServices.addRecordToDB(IPSLogtest2)
-  const IPSLogtest3 = new Object({
+  await IPSLogServices.addRecordToDB(IPSLogTest2)
+  const IPSLogTest3 = new Object({
     staff_name: 'name 5',
     time_period: 'TIME PERIOD STRING',
     work_week: 'WORK WEEK STRING',
@@ -134,8 +123,8 @@ test('add multiple records', async () => {
     community_hours_spent: 10,
     train_PTO_hours_spent: 10,
   })
-  await IPSLogServices.addRecordToDB(IPSLogtest3)
-  const IPSLogtest4 = new Object({
+  await IPSLogServices.addRecordToDB(IPSLogTest3)
+  const IPSLogTest4 = new Object({
     staff_name: 'name 6',
     time_period: 'TIME PERIOD STRING',
     work_week: 'WORK WEEK STRING',
@@ -144,8 +133,8 @@ test('add multiple records', async () => {
     community_hours_spent: 10,
     train_PTO_hours_spent: 10,
   })
-  await IPSLogServices.addRecordToDB(IPSLogtest4)
-  const IPSLogtest5 = new Object({
+  await IPSLogServices.addRecordToDB(IPSLogTest4)
+  const IPSLogTest5 = new Object({
     staff_name: 'name 7',
     time_period: 'TIME PERIOD STRING',
     work_week: 'WORK WEEK STRING',
@@ -154,7 +143,7 @@ test('add multiple records', async () => {
     community_hours_spent: 10,
     train_PTO_hours_spent: 10,
   })
-  await IPSLogServices.addRecordToDB(IPSLogtest5)
+  await IPSLogServices.addRecordToDB(IPSLogTest5)
   mongoose.disconnect()
 })
 

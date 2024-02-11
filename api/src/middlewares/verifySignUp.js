@@ -1,7 +1,7 @@
-import Roles from '../models/roleSchema'
-import User from '../models/userSchema'
+import { Role } from '../models/roleSchema'
+import { User } from '../models/userSchema'
 
-const checkDuplicateUsernameOrEmail = (req, res, next) => {
+export const checkDuplicateUsernameOrEmail = (req, res, next) => {
   User.findOne({
     username: req.body.username,
   }).exec((err, user) => {
@@ -33,10 +33,10 @@ const checkDuplicateUsernameOrEmail = (req, res, next) => {
   })
 }
 
-const checkRolesExisted = (req, res, next) => {
+export const checkRolesExisted = (req, res, next) => {
   if (req.body.roles) {
     for (let i = 0; i < req.body.roles.length; i++) {
-      Roles.findOne({ name: req.body.roles[i] }, (err, result) => {
+      Role.findOne({ name: req.body.roles[i] }, (err, result) => {
         if (err) {
           res.status(500).send({ message: err })
           return
@@ -56,10 +56,3 @@ const checkRolesExisted = (req, res, next) => {
     next()
   }
 }
-
-const verifySignUp = {
-  checkDuplicateUsernameOrEmail,
-  checkRolesExisted,
-}
-
-module.exports = verifySignUp

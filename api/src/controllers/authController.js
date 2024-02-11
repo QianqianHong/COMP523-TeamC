@@ -1,6 +1,6 @@
 import config from '../auth.config'
-import Role from '../models/roleSchema'
-import User from '../models/userSchema'
+import { Role } from '../models/roleSchema'
+import { User } from '../models/userSchema'
 import verify from './emailVerifyController'
 
 import bcrypt from 'bcryptjs'

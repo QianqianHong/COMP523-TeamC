@@ -1,7 +1,7 @@
 import staffingServices from '../services/staffingServices'
 
 /* Get all controller to retrieve all records. Result variable checks for success. */
-async function getAllRecords(req, res) {
+export async function getAllRecords(req, res) {
   try {
     var result = await staffingServices.getAllRecordsFromDB()
     if (result) {
@@ -16,7 +16,7 @@ async function getAllRecords(req, res) {
 }
 
 /* Get specific record controller to retrieve a record. Result variable checks for success. */
-async function getRecord(req, res) {
+export async function getRecord(req, res) {
   var id = req.params.id
   try {
     var result = await staffingServices.getRecordFromDB(id)
@@ -32,7 +32,7 @@ async function getRecord(req, res) {
 }
 
 /* Add a record controller to add a record. Status variable checks for success. */
-async function addRecord(req, res) {
+export async function addRecord(req, res) {
   var body = req.body
   try {
     var status = await staffingServices.addRecordToDB(body)
@@ -48,7 +48,7 @@ async function addRecord(req, res) {
 }
 
 /* Update a record controller to update a record. Status variable checks for success. */
-async function updateRecord(req, res) {
+export async function updateRecord(req, res) {
   var id = req.params.id
   var body = req.body
 
@@ -68,7 +68,7 @@ async function updateRecord(req, res) {
 }
 
 /* Delete a record controller to delete a record. Status variable checks for success. */
-async function deleteRecord(req, res) {
+export async function deleteRecord(req, res) {
   var id = req.params.id
   try {
     var status = await staffingServices.deleteRecordFromDB(id)
@@ -84,7 +84,7 @@ async function deleteRecord(req, res) {
 }
 
 /* Delete all records controller to delete all records. Result variable checks for success. */
-async function deleteAllRecords(req, res) {
+export async function deleteAllRecords(req, res) {
   try {
     var result = await staffingServices.deleteAllRecordsFromDB()
     if (result) {
@@ -96,13 +96,4 @@ async function deleteAllRecords(req, res) {
     console.log(e.message)
     res.status(500).json({ success: false, msg: 'Failed to delete records.' })
   }
-}
-
-module.exports = {
-  getAllRecords,
-  getRecord,
-  addRecord,
-  updateRecord,
-  deleteRecord,
-  deleteAllRecords,
 }

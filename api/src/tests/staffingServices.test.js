@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import staffingModel from '../models/staffingSchema'
-import staffingServices from '../services/staffingServices'
+import * as staffingServices from '../services/staffingServices'
 
 dotenv.config()
 const { DATABASE_URI } = process.env
