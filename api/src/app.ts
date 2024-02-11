@@ -1,13 +1,13 @@
 import cors from 'cors'
 import express from 'express'
 import mongoose from 'mongoose'
-import dbConfig from './db.config'
+import config from './config'
 
 import { Role } from './models/roleSchema'
 import routes from './routes/index'
 
 mongoose
-  .connect(dbConfig.url, {
+  .connect(config.mongodbUri, {
     // useNewUrlParser: true,
     // useUnifiedTopology: true,
   })
