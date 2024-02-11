@@ -1,5 +1,9 @@
 import { authJwt } from "../middlewares";
-import controller from "../controllers/userController";
+import {
+  allAccess,
+  userBoard,
+  adminBoard,
+} from "../controllers/userController";
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -10,13 +14,13 @@ module.exports = function (app) {
     next();
   });
 
-  app.get("/api/test/all", controller.allAccess);
+  app.get("/api/test/all", allAccess);
 
-  app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
+  app.get("/api/test/user", [authJwt.verifyToken], userBoard);
 
   app.get(
     "/api/test/admin",
     [authJwt.verifyToken, authJwt.isAdmin],
-    controller.adminBoard
+    adminBoard
   );
 };

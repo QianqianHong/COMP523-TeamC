@@ -2,8 +2,9 @@ import cors from "cors";
 import express from "express";
 
 import db from "./database";
-const Role = db.roles;
 import routes from "./routes/index";
+
+import Role from "./models/roleSchema";
 
 import userRoutes from "./routes/userRoutes";
 import verifyEmailRoutes from "./routes/verifyEmailRoutes";
@@ -16,7 +17,7 @@ import getCurrentUser from "./routes/getCurrentUserRoutes";
 const app = express();
 const port = 3000;
 
-/* Initalizing cors */
+/* Initializing cors */
 var corsOptions = {
   origin: "http://localhost:4200",
 };
@@ -43,26 +44,29 @@ db.mongoose
 
 // Initialize database
 function initial() {
-  // Role.estimatedDocumentCount((err, count) => {
-  //   if (!err && count === 0) {
-  //     new Role({
-  //       name: "user",
-  //     }).save((err) => {
-  //       if (err) {
-  //         console.log("error", err);
-  //       }
-  //       console.log("added 'user' to roles collection");
-  //     });
-  //     new Role({
-  //       name: "admin",
-  //     }).save((err) => {
-  //       if (err) {
-  //         console.log("error", err);
-  //       }
-  //       console.log("added 'admin' to roles collection");
-  //     });
-  //   }
-  // });
+  Role.estimatedDocumentCount((err, count) => {
+    if (!err && count === 0) {
+      new Role({
+        name: "user",
+      }).save((err) => {
+        if (err) {
+          console.log("error", err);
+        }
+
+        console.log("added 'user' to roles collection");
+      });
+
+      new Role({
+        name: "admin",
+      }).save((err) => {
+        if (err) {
+          console.log("error", err);
+        }
+
+        console.log("added 'admin' to roles collection");
+      });
+    }
+  });
 }
 
 initial();
