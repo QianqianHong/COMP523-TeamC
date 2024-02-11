@@ -1,17 +1,18 @@
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
-import personLevelModel from '../models/personLevelSchema'
+import { personLevelModel } from '../models/personLevelSchema'
 import * as personLevelServices from '../services/personLevelServices'
 
 dotenv.config()
-const { DATABASE_URI } = process.env
+const { DATABASE_URI = '' } = process.env
 
 /*test('test template', async () => {0
     try {
         await mongoose.connect(DATABASE_URI);
         console.log("Successfully connected to the server");
     } catch (e) {
-        console.log(e.message);
+        const err = e as Error
+    console.error(err.message);
     }
 
     mongoose.disconnect();
@@ -22,7 +23,8 @@ test('clear database', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('clearing database')
   await personLevelModel.deleteMany()
@@ -34,7 +36,8 @@ test('add record', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('add record test')
   const personLeveltest = new Object({
@@ -58,7 +61,8 @@ test('add unformatted record', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('add unformatted record test')
   const personLeveltest = new Object({
@@ -85,7 +89,8 @@ test('update record', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('update record test')
   const personLeveltest = new Object({
@@ -115,7 +120,8 @@ test('add multiple records', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('add multiple records test')
   const personLeveltest1 = new Object({
@@ -181,7 +187,8 @@ test('retrieve all records', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('view all records')
   await personLevelServices.getAllRecordsFromDB().then((status) => {
@@ -195,7 +202,8 @@ test('retrieve 1 record', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('view record 6')
   await personLevelServices.getRecordFromDB('name 6').then((status) => {
@@ -209,7 +217,8 @@ test('retrieve non-existant record', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('view non-existant record')
   await personLevelServices.getRecordFromDB('name 8').then((status) => {
@@ -223,7 +232,8 @@ test('delete a record', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('delete record 7')
   await personLevelServices.deleteRecordFromDB('name 7').then((status) => {

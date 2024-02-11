@@ -135,4 +135,5 @@ export async function uploadCSVtoDB(csvFileName: string) {
         addRecordToDB(csvData[i])
       }
     })
+  return true
 }

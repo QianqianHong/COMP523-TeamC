@@ -1,11 +1,15 @@
 // Import all the required services at the top of your controller file
-import IPSLogServices from '../services/IPSLogServices'
-import jobDevServices from '../services/jobDevServices'
-import personLevelServices from '../services/personLevelServices'
-import staffingServices from '../services/staffingServices'
+import { Request, Response } from 'express'
+import * as IPSLogServices from '../services/IPSLogServices'
+import * as jobDevServices from '../services/jobDevServices'
+import * as personLevelServices from '../services/personLevelServices'
+import * as staffingServices from '../services/staffingServices'
 
 // New controller function to aggregate all records
-export async function getAllRecordsFromAllServices(req, res) {
+export async function getAllRecordsFromAllServices(
+  req: Request,
+  res: Response,
+) {
   try {
     // Retrieve all records from each service
     const ipsLogRecords = await IPSLogServices.getAllRecordsFromDB()
@@ -24,7 +28,8 @@ export async function getAllRecordsFromAllServices(req, res) {
     // Send the combined records as a response
     res.status(200).json({ success: true, data: allRecords })
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
     res
       .status(500)
       .json({ success: false, msg: 'Failed to retrieve all records.' })

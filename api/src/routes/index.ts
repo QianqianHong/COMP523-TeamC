@@ -106,4 +106,4 @@ router.use('/userInfo', getUserInfo)
 router.use('/user-setting', setUserInfo)
 router.use('/current-user', getCurrentUser)
 
-module.exports = router
+export default router

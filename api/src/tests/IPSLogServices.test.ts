@@ -4,14 +4,15 @@ import { IPSLogModel } from '../models/IPSLogSchema'
 import * as IPSLogServices from '../services/IPSLogServices'
 
 dotenv.config()
-const { DATABASE_URI } = process.env
+const { DATABASE_URI = '' } = process.env
 
 test('clear database', async () => {
   try {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('clearing database')
   await IPSLogModel.deleteMany()
@@ -23,7 +24,8 @@ test('add record', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('add record test')
   const IPSLogTest = new Object({
@@ -46,7 +48,8 @@ test('add unformatted record', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('add unformatted record test')
   const IPSLogTest = new Object({
@@ -68,7 +71,8 @@ test('update record', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('update record test')
   const IPSLogtest = new Object({
@@ -91,7 +95,8 @@ test('add multiple records', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('add multiple records test')
   const IPSLogTest1 = new Object({
@@ -152,7 +157,8 @@ test('retrieve all records', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('view all records')
   await IPSLogServices.getAllRecordsFromDB().then((status) => {
@@ -166,7 +172,8 @@ test('retrieve 1 record', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('view record 6')
   await IPSLogServices.getRecordFromDB('name 6').then((status) => {
@@ -180,7 +187,8 @@ test('retrieve non-existant record', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('view non-existant record')
   await IPSLogServices.getRecordFromDB('name 8').then((status) => {
@@ -194,7 +202,8 @@ test('delete a record', async () => {
     await mongoose.connect(DATABASE_URI)
     console.log('Successfully connected to the server')
   } catch (e) {
-    console.log(e.message)
+    const err = e as Error
+    console.error(err.message)
   }
   console.log('delete record 7')
   await IPSLogServices.deleteRecordFromDB('name 7').then((status) => {
