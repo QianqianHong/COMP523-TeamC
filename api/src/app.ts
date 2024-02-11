@@ -7,10 +7,7 @@ import { Role } from './models/roleSchema'
 import routes from './routes/index'
 
 mongoose
-  .connect(config.mongodbUri, {
-    // useNewUrlParser: true,
-    // useUnifiedTopology: true,
-  })
+  .connect(config.mongodbUri)
   .then(() => {
     console.log('Connected to the database!')
   })
