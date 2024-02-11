@@ -1,5 +1,5 @@
-const { verifySignUp } = require('../middlewares')
-const controller = require('../controllers/authController')
+import controller from '../controllers/authController'
+import { verifySignUp } from '../middlewares'
 
 module.exports = function (app) {
   app.use(function (req, res, next) {

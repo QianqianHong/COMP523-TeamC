@@ -1,5 +1,4 @@
-const ROLES = require('../models/roleSchema')
-const User = require('../models/userSchema')
+import User from '../models/userSchema'
 
 module.exports = function (app) {
   app.use(function (req, res, next) {

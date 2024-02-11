@@ -1,8 +1,7 @@
-const mongodb = require('mongodb')
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
-const personLevelServices = require('../services/personLevelServices')
-const personLevelModel = require('../models/personLevelSchema')
+import dotenv from 'dotenv'
+import mongoose from 'mongoose'
+import personLevelModel from '../models/personLevelSchema'
+import personLevelServices from '../services/personLevelServices'
 
 dotenv.config()
 const { DATABASE_URI } = process.env

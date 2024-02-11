@@ -1,9 +1,10 @@
-const express = require('express')
+import express from 'express'
+
+import jwt from 'jsonwebtoken'
+import config from '../auth.config'
+import { User } from '../models/userSchema'
+
 const router = express.Router()
-const User = require('../models/userSchema')
-const { authJwt } = require('../middlewares/authJwt')
-const jwt = require('jsonwebtoken')
-const config = require('../auth.config')
 
 router.get('/', (req, res) => {
   // console.log(req.headers.authorization)

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 // Create a schema
 const IPSSchema = mongoose.Schema({

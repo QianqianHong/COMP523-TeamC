@@ -1,4 +1,4 @@
-const staffingServices = require('../services/staffingServices')
+import staffingServices from '../services/staffingServices'
 
 /* Get all controller to retrieve all records. Result variable checks for success. */
 async function getAllRecords(req, res) {

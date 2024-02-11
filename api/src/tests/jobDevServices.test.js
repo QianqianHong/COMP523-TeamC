@@ -1,8 +1,7 @@
-const mongodb = require('mongodb')
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
-const JobDevServices = require('../services/JobDevServices')
-const JobDevModel = require('../models/JobDevSchema')
+import dotenv from 'dotenv'
+import mongoose from 'mongoose'
+import JobDevModel from '../models/JobDevSchema'
+import JobDevServices from '../services/JobDevServices'
 
 dotenv.config()
 const { DATABASE_URI } = process.env

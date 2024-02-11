@@ -1,4 +1,4 @@
-const closedModel = require('../models/closedSchema')
+import closedModel from '../models/closedSchema'
 
 /* Runs mongoose function to get all records from the database */
 async function getAllRecordsFromDB() {

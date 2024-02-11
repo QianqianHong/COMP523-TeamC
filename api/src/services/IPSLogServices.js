@@ -1,4 +1,4 @@
-const IPSLogModel = require('../models/IPSLogSchema')
+import IPSLogModel from '../models/IPSLogSchema'
 
 /* Runs mongoose function to get all records from the database */
 async function getAllRecordsFromDB() {

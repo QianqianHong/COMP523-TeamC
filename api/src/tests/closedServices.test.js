@@ -1,7 +1,7 @@
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
-const closedServices = require('../services/closedServices')
-const closedModel = require('../models/closedSchema')
+import dotenv from 'dotenv'
+import mongoose from 'mongoose'
+import closedModel from '../models/closedSchema'
+import closedServices from '../services/closedServices'
 
 dotenv.config()
 const { DATABASE_URI } = process.env

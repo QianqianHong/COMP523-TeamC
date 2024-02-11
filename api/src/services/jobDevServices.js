@@ -1,4 +1,4 @@
-const jobDevModel = require('../models/jobDevSchema')
+import jobDevModel from '../models/jobDevSchema'
 
 /* Runs mongoose function to get all records from the database */
 async function getAllRecordsFromDB() {

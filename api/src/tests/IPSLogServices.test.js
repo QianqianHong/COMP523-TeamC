@@ -1,8 +1,7 @@
-const mongodb = require('mongodb')
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
-const IPSLogServices = require('../services/IPSLogServices')
-const IPSLogModel = require('../models/IPSLogSchema')
+import dotenv from 'dotenv'
+import mongoose from 'mongoose'
+import IPSLogModel from '../models/IPSLogSchema'
+import IPSLogServices from '../services/IPSLogServices'
 
 dotenv.config()
 const { DATABASE_URI } = process.env

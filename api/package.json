@@ -3,7 +3,8 @@
     "test": "jest",
     "build": "tsc -p tsconfig.json",
     "start": "node bin/app.js",
-    "prettier": "prettier --config .prettierrc --write 'src/**/*.{ts,js}'"
+    "prettier": "prettier --config .prettierrc --write 'src/**/*.{ts,js}'",
+    "prettier:check": "prettier --config .prettierrc --check 'src/**/*.{ts,js}'"
   },
   "dependencies": {
     "angular": "^1.8.3",
