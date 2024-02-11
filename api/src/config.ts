@@ -1,4 +1,13 @@
+import dotenv from 'dotenv'
+
+dotenv.config()
+const username = process.env.EMAIL_USERNAME
+const password = process.env.EMAIL_PASSWORD
+
 export default {
+  email_username: username,
+  email_password: password,
+
   secret: 'ips-fidelity',
   mongodbUri:
     //     "mongodb+srv://ac22:thebeast@thebeastdatabase.dfi9k2p.mongodb.net/thebeast?retryWrites=true&w=majority"
