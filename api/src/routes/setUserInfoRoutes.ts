@@ -1,8 +1,9 @@
-import User from '../models/userSchema'
+import { Request, Response } from 'express'
+import { User } from '../models/userSchema'
 
-export const setUserInfo = async (req, res) => {
+export const setUserInfo = async (req: Request, res: Response) => {
   const email = req.body.email
-  const user = User.findOne({ user_email: email })
+  const user = await User.findOne({ user_email: email })
   if (user) {
     const filter = { user_email: email }
     const replacementDocument = {

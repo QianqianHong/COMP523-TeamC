@@ -1,10 +1,11 @@
-import { config } from 'dotenv'
+import dotenv from 'dotenv'
 import nodemailer from 'nodemailer'
 
-config() //invoking the dotenv config here
+dotenv.config()
 const username = process.env.EMAIL_USERNAME
 const password = process.env.EMAIL_PASSWORD
-exports.randString = () => {
+
+export const randString = () => {
   const len = 8
   let randStr = ''
   for (let i = 0; i < len; i++) {
@@ -15,7 +16,7 @@ exports.randString = () => {
   return randStr
 }
 
-exports.sendEmail = (email, uniqueString) => {
+export const sendEmail = (email: any, uniqueString: string) => {
   console.log(email)
   console.log(process.env.EMAIL_PASSWORD)
   console.log(process.env.EMAIL_USERNAME)

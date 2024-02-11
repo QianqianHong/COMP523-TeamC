@@ -6,12 +6,9 @@ import routes from './routes/index'
 
 import { Role } from './models/roleSchema'
 
-import authRoutes from './routes/authRoutes'
 import { getCurrentUser } from './routes/getCurrentUserRoutes'
 import { getUserInfo } from './routes/getUserInfoRoutes'
 import { setUserInfo } from './routes/setUserInfoRoutes'
-import userRoutes from './routes/userRoutes'
-import verifyEmailRoutes from './routes/verifyEmailRoutes'
 
 /* Creating an express app on port 8080 */
 const app = express()
@@ -74,9 +71,6 @@ initial()
 /* Connecting to routers */
 
 app.use('/', routes)
-userRoutes(app)
-verifyEmailRoutes(app)
-authRoutes(app)
 app.use('/userInfo', getUserInfo)
 app.use('/user-setting', setUserInfo)
 app.use('/current-user', getCurrentUser)

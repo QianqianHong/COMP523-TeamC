@@ -1,12 +1,14 @@
+import bcrypt from 'bcryptjs'
+import { Request, Response } from 'express'
+import jwt from 'jsonwebtoken'
+import { Document, Error } from 'mongoose'
+
 import config from '../auth.config'
 import { Role } from '../models/roleSchema'
 import { User } from '../models/userSchema'
-import verify from './emailVerifyController'
+import * as verify from './emailVerifyController'
 
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
-
-exports.signup = (req, res) => {
+export const signup = (req: Request, res: Response) => {
   const user = new User({
     username: req.body.username,
     user_email: req.body.email,
@@ -28,7 +30,7 @@ exports.signup = (req, res) => {
         {
           name: { $in: req.body.roles },
         },
-        (err, roles) => {
+        (err: Error, roles: Array<Document>) => {
           if (err) {
             res.status(500).send({ message: err })
             return
@@ -41,7 +43,7 @@ exports.signup = (req, res) => {
               return
             }
             // Send the email verification
-            verify.sendEmail(req.body.email, user.uniqueString)
+            verify.sendEmail(req.body.email, user.uniqueString ?? '')
 
             // Once everything is done, send a success message
             res.status(200).send({
@@ -53,7 +55,7 @@ exports.signup = (req, res) => {
       )
     } else {
       // If no roles are specified, just save the user and send the email
-      verify.sendEmail(req.body.email, user.uniqueString)
+      verify.sendEmail(req.body.email, user.uniqueString ?? '')
 
       // Send a success message
       res.status(200).send({
@@ -64,7 +66,7 @@ exports.signup = (req, res) => {
   })
 }
 
-exports.signin = (req, res) => {
+export const signIn = (req: Request, res: Response) => {
   User.findOne({
     user_email: req.body.email,
   })
@@ -79,7 +81,10 @@ exports.signin = (req, res) => {
         return res.status(404).send({ message: 'User Not found.' })
       }
 
-      var passwordIsValid = bcrypt.compareSync(req.body.password, user.password)
+      var passwordIsValid = bcrypt.compareSync(
+        req.body.password,
+        user.password ?? '',
+      )
 
       if (!passwordIsValid) {
         return res.status(401).send({
@@ -102,7 +107,7 @@ exports.signin = (req, res) => {
       var authorities = []
 
       for (let i = 0; i < user.roles.length; i++) {
-        authorities.push('ROLE_' + user.roles[i].name.toUpperCase())
+        authorities.push('ROLE_' + user.roles[i].toString())
       }
       res.status(200).send({
         uid: user._id,

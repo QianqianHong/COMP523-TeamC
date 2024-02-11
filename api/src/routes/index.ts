@@ -1,4 +1,6 @@
 import express from 'express'
+import * as authController from '../controllers/authController'
+import * as verifySignUp from '../middlewares/verifySignUp'
 
 /* Controllers */
 import * as IPSLogController from '../controllers/IPSLogController'
@@ -7,6 +9,10 @@ import * as closedController from '../controllers/closedController'
 import * as jobDevController from '../controllers/jobDevController'
 import * as personLevelController from '../controllers/personLevelController'
 import * as staffingController from '../controllers/staffingController'
+import { adminBoard, allAccess, userBoard } from '../controllers/userController'
+
+import * as authJwt from '../middlewares/authJwt'
+import { getUniqueString, verifyMiddleware } from './verifyEmailRoutes'
 
 const router = express.Router()
 
@@ -61,5 +67,35 @@ router.delete('/ipslog/:id', IPSLogController.deleteRecord)
 router.delete('/ipslog', IPSLogController.deleteAllRecords)
 
 router.get('/alllog', allLogsController.getAllRecordsFromAllServices)
+
+// auth routes
+router.use(function (req, res, next) {
+  res.header(
+    'Access-Control-Allow-Headers',
+    'x-access-token, Origin, Content-Type, Accept',
+  )
+  next()
+})
+
+router.post(
+  '/api/auth/signup',
+  [verifySignUp.checkDuplicateUsernameOrEmail, verifySignUp.checkRolesExisted],
+  authController.signup,
+)
+router.post('/api/auth/signin', authController.signIn)
+
+// user routes
+router.use('/api/test', verifyMiddleware)
+router.get('/api/test/all', allAccess)
+router.get('/api/test/user', [authJwt.verifyToken], userBoard)
+router.get(
+  '/api/test/admin',
+  [authJwt.verifyToken, authJwt.isAdmin],
+  adminBoard,
+)
+
+// verify email routes
+router.use('/verify', verifyMiddleware)
+router.get('/verify/:uniqueString', getUniqueString)
 
 module.exports = router
