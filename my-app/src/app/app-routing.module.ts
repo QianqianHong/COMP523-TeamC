@@ -18,6 +18,7 @@ import { StaffingListComponent } from './components/staffing/staffing-list/staff
 import { AddStaffingComponent } from './components/staffing/add-staffing/add-staffing.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { SignUpPageComponent } from './components/sign-up-page/sign-up-page.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AuthGuard } from './auth.guard';
 import { AppComponent } from './app.component';
 import { AuthGuard2 } from './auth.guard.2';
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'education', component: EducationComponent },
   { path: 'employment', component: EmploymentComponent },
   { path: 'vr', component: VrComponent }, 
+  { path: 'about-us', component: AboutUsComponent },
 ];
 
 @NgModule({
