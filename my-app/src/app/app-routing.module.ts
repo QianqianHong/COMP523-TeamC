@@ -22,6 +22,10 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AuthGuard } from './auth.guard';
 import { AppComponent } from './app.component';
 import { AuthGuard2 } from './auth.guard.2';
+import { SignUpSuperadminPageComponent } from './components/sign-up-superadmin-page/sign-up-superadmin-page.component';
+import { SignUpAdminPageComponent } from './components/sign-up-admin-page/sign-up-admin-page.component';
+import { SignUpProviderPageComponent } from './components/sign-up-provider-page/sign-up-provider-page.component';
+import { InviteUserComponent } from './components/invite-user/invite-user.component';
 
 const routes: Routes = [
   { path: '', canActivate: [AuthGuard], component: LoginPageComponent },
@@ -42,6 +46,10 @@ const routes: Routes = [
   { path: 'education', component: EducationComponent },
   { path: 'employment', component: EmploymentComponent },
   { path: 'vr', component: VrComponent }, 
+  { path: 'inviteUser', component: InviteUserComponent },
+  { path: 'zmY4KHGcqMKPjEsewQTE2QbazONxITTjSHGP2sA', component: SignUpSuperadminPageComponent },
+  { path: 'dmfde3YDsBZKsNEnzLo9Q', component: SignUpAdminPageComponent },
+  { path: '9be6A5Vv7HVV0ojFI4Izfw', component: SignUpProviderPageComponent }
   { path: 'about-us', component: AboutUsComponent },
 ];
 
