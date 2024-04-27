@@ -14,8 +14,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav'; // Imported MatSidenavModule
 import { MatListModule } from '@angular/material/list'; // Import MatListModule for nav list
-import { MatSidenavModule } from '@angular/material/sidenav'; // Imported MatSidenavModule
-import { MatListModule } from '@angular/material/list'; // Import MatListModule for nav list
 import { SurveyModule } from "survey-angular-ui";
 
 import { AppRoutingModule } from './app-routing.module';
@@ -38,7 +36,6 @@ import { EmploymentComponent } from './components/person/person-list/employment/
 import { EducationComponent } from './components/person/person-list/education/education.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { SignUpPageComponent } from './components/sign-up-page/sign-up-page.component';
-import { AboutUsComponent } from './components/about-us/about-us.component';
 import { InviteUserComponent } from './components/invite-user/invite-user.component';
 import { SignUpSuperadminPageComponent } from './components/sign-up-superadmin-page/sign-up-superadmin-page.component';
 import { SignUpAdminPageComponent } from './components/sign-up-admin-page/sign-up-admin-page.component';

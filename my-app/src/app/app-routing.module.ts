@@ -20,7 +20,6 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { SignUpPageComponent } from './components/sign-up-page/sign-up-page.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AuthGuard } from './auth.guard';
-import { AppComponent } from './app.component';
 import { AuthGuard2 } from './auth.guard.2';
 import { SignUpSuperadminPageComponent } from './components/sign-up-superadmin-page/sign-up-superadmin-page.component';
 import { SignUpAdminPageComponent } from './components/sign-up-admin-page/sign-up-admin-page.component';
@@ -50,8 +49,7 @@ const routes: Routes = [
   { path: 'inviteUser', component: InviteUserComponent },
   { path: 'zmY4KHGcqMKPjEsewQTE2QbazONxITTjSHGP2sA', component: SignUpSuperadminPageComponent },
   { path: 'dmfde3YDsBZKsNEnzLo9Q', component: SignUpAdminPageComponent },
-  { path: '9be6A5Vv7HVV0ojFI4Izfw', component: SignUpProviderPageComponent }
-  { path: 'about-us', component: AboutUsComponent },
+  { path: '9be6A5Vv7HVV0ojFI4Izfw', component: SignUpProviderPageComponent },
 ];
 
 @NgModule({
